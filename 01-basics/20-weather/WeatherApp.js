@@ -36,8 +36,9 @@ export default defineComponent({
         <li
           v-for="weather in weatherData"
           key='weather.geographic_name'
-          :class="isSunset(weather.current.sunset) ?
-          'weather-card--night weather-card' : 'weather-card'">
+          class="weather-card"
+          :class="{'weather-card--night': isSunset(weather.current.sunset)}"
+        >
           <div
             class="weather-alert"
             v-if="weather.alert && weather.alert.description"
