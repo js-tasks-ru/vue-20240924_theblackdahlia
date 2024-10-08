@@ -1,25 +1,58 @@
-import { defineComponent } from 'vue'
+import {computed, defineComponent, ref} from 'vue'
 
 export default defineComponent({
   name: 'CounterApp',
 
-  setup() {},
+  setup() {
+    const counter = ref({
+      count: 0
+    })
+
+    const disabledIncrease = computed(() => {
+      return counter.value.count >= 5
+    })
+
+    const disabledDecrease = computed(() => {
+      return counter.value.count < 1
+    })
+
+    const increaseCounter = () => {
+      counter.value.count = counter.value.count + 1
+    }
+
+    const decreaseCounter = () => {
+      counter.value.count = counter.value.count - 1
+    }
+
+
+
+    return {
+      counter,
+      increaseCounter,
+      decreaseCounter,
+      disabledIncrease,
+      disabledDecrease,
+    }
+  },
 
   template: `
     <div class="counter">
       <button
-        class="button button--secondary"
-        type="button"
-        aria-label="Decrement"
-        disabled
+          @click="decreaseCounter"
+          class="button button--secondary"
+          type="button"
+          aria-label="Decrement"
+          :disabled="disabledDecrease"
       >➖</button>
 
-      <span class="count" data-testid="count">0</span>
+      <span class="count" data-testid="count">{{counter.count}}</span>
 
       <button
-        class="button button--secondary"
-        type="button"
-        aria-label="Increment"
+          @click="increaseCounter"
+          class="button button--secondary"
+          type="button"
+          aria-label="Increment"
+          :disabled="disabledIncrease"
       >➕</button>
     </div>
   `,
