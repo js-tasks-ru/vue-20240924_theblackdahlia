@@ -4,23 +4,21 @@ export default defineComponent({
   name: 'CalculatorApp',
 
   setup() {
-    const inputNumber = ref({
-      first: 0,
-      second: 0,
-    })
+    const inputNumberFirst = ref(0)
+    const inputNumberSecond = ref(0)
 
     const operator = ref('sum')
 
     const totalSum = computed(() => {
       switch (operator.value) {
         case 'sum':
-          return inputNumber.value.first + inputNumber.value.second;
+          return inputNumberFirst.value + inputNumberSecond.value;
         case 'subtract':
-          return inputNumber.value.first - inputNumber.value.second;
+          return inputNumberFirst.value - inputNumberSecond.value;
         case 'multiply':
-          return inputNumber.value.first * inputNumber.value.second;
+          return inputNumberFirst.value * inputNumberSecond.value;
         case 'divide':
-          return inputNumber.value.first / inputNumber.value.second;
+          return inputNumberFirst.value / inputNumberSecond.value;
         default:
           return 0;
       }
@@ -28,7 +26,8 @@ export default defineComponent({
 
 
     return {
-      inputNumber,
+      inputNumberFirst,
+      inputNumberSecond,
       operator,
       totalSum,
     }
@@ -36,7 +35,7 @@ export default defineComponent({
 
   template: `
     <div class="calculator">
-      <input type="number" aria-label="First operand" v-model="inputNumber.first"/>
+      <input type="number" aria-label="First operand" v-model="inputNumberFirst"/>
 
       <div class="calculator__operators">
         <label><input type="radio" name="operator" value="sum" v-model="operator"/>➕</label>
@@ -45,7 +44,7 @@ export default defineComponent({
         <label><input type="radio" name="operator" value="divide" v-model="operator"/>➗</label>
       </div>
 
-      <input type="number" aria-label="Second operand" v-model="inputNumber.second"/>
+      <input type="number" aria-label="Second operand" v-model="inputNumberSecond"/>
 
       <div>=</div>
 

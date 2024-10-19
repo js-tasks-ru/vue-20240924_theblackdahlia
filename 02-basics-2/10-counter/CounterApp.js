@@ -4,24 +4,22 @@ export default defineComponent({
   name: 'CounterApp',
 
   setup() {
-    const counter = ref({
-      count: 0
-    })
+    const counter = ref(0)
 
     const disabledIncrease = computed(() => {
-      return counter.value.count >= 5
+      return counter.value >= 5
     })
 
     const disabledDecrease = computed(() => {
-      return counter.value.count < 1
+      return counter.value < 1
     })
 
     const increaseCounter = () => {
-      counter.value.count = counter.value.count + 1
+      counter.value = counter.value + 1
     }
 
     const decreaseCounter = () => {
-      counter.value.count = counter.value.count - 1
+      counter.value = counter.value - 1
     }
 
 
@@ -45,7 +43,7 @@ export default defineComponent({
           :disabled="disabledDecrease"
       >➖</button>
 
-      <span class="count" data-testid="count">{{counter.count}}</span>
+      <span class="count" data-testid="count">{{counter}}</span>
 
       <button
           @click="increaseCounter"
