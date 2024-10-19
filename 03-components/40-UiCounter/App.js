@@ -32,7 +32,7 @@ export default defineComponent({
         <UiCounter v-model:count="count1" />
       </p>
       <p style="margin: 1em 0">
-        <UiCounter v-model:count="count2" :min="1" :max="3" />
+        <UiCounter v-model:count="count2" :min="0" :max="3" />
       </p>
       <p style="margin: 1em 0">
         <UiButton kind="primary" @click="reset">Reset</UiButton>
