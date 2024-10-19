@@ -57,7 +57,7 @@ export default defineComponent({
         <div class="radio-group" role="radiogroup">
           <div
             class="radio-group__button"
-            v-for="id in [1,2,3,4,5]"
+            v-for="id in 5"
             :key="id"
           >
             <input
